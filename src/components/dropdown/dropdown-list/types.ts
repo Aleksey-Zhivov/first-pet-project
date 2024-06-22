@@ -5,6 +5,5 @@ export type OptionType = {
 export type DropdownListProps = {
 	isOpen: boolean;
 	options: OptionType[];
-	onSelect: (name: string) => void;
 	selected?: boolean;
 };

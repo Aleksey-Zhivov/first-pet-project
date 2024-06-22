@@ -1,19 +1,19 @@
-import { FC, MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { cities } from 'src/someData/cities';
 import { Input } from './input';
 import { DropdownList } from './dropdown-list';
 import { Label } from './label';
 import { DeleteButton } from './delete-button';
 
-export const Dropdown: FC = () => {
+export const Dropdown = () => {
 	const list = document.getElementById('list');
 
 	const [isOpen, setOpen] = useState(false);
-	const [selected, setSelected] = useState(false);
 	const [inputValue, setInputValue] = useState('');
+	const [options, setOptions] = useState(cities);
 
 	const handleOpen = () => setOpen(!isOpen);
-	const setInputText = (e: MouseEvent<HTMLLIElement>) => {
+	const setInputText = (e: MouseEvent) => {
 		const item = e.target as HTMLLIElement;
 		if (item !== e.currentTarget && item) {
 			setInputValue(item.outerText);
@@ -22,7 +22,22 @@ export const Dropdown: FC = () => {
 		}
 	};
 
-	const handleSelected = () => setSelected(!selected);
+	const handleOpenByOputsideClick = (e: MouseEvent) => {
+		if (isOpen && e.target !== list) {
+			setOpen(!isOpen);
+		}
+	};
+
+	const handleOpenByEscapePress = (e: KeyboardEvent) => {
+		if (isOpen && e.key === 'Escape') {
+			setOpen(!isOpen);
+		}
+	};
+
+	const handleChange = (e: SyntheticEvent) => {
+		const input = e.target as HTMLInputElement;
+		setInputValue(input.value);
+	};
 
 	useEffect(() => {
 		list?.addEventListener('mouseup', (e) => setInputText(e));
@@ -30,28 +45,28 @@ export const Dropdown: FC = () => {
 	}, [list]);
 
 	useEffect(() => {
-		document.addEventListener('mouseup', (e) => {
-			if (isOpen && e.target !== list) {
-				setOpen(!isOpen);
-			}
-		});
-		document.addEventListener('keydown', (e: KeyboardEvent) => {
-			if (isOpen && e.key === 'Escape') {
-				setOpen(!isOpen);
-			}
-		});
+		document.addEventListener('mouseup', (e) => handleOpenByOputsideClick(e));
+		return document.removeEventListener('mouseup', (e) =>
+			handleOpenByOputsideClick(e)
+		);
+	}, [isOpen]);
+
+	useEffect(() => {
+		document.addEventListener('keydown', (e) => handleOpenByEscapePress(e));
+		return document.removeEventListener('keydown', (e) =>
+			handleOpenByEscapePress(e)
+		);
 	}, [isOpen]);
 
 	return (
 		<>
 			<Label title='Выберите город'></Label>
-			<Input onClick={handleOpen} value={inputValue} />
+			<Input value={inputValue} onClick={handleOpen} onChange={handleChange} />
 			<DeleteButton onClick={() => setInputValue('')}></DeleteButton>
 			<DropdownList
 				isOpen={isOpen}
-				options={cities}
-				selected={false}
-				onSelect={handleSelected}></DropdownList>
+				options={options}
+				selected={false}></DropdownList>
 		</>
 	);
 };

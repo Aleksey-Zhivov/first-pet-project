@@ -1,4 +1,4 @@
-import { OptionType } from 'src/components/dropdown/types';
+import { OptionType } from '../components/dropdown/dropdown-list/types';
 
 export const cities: OptionType[] = [
 	{
@@ -24,5 +24,20 @@ export const cities: OptionType[] = [
 	},
 	{
 		name: 'Владивосток',
+	},
+	{
+		name: 'Нижний Новгород',
+	},
+	{
+		name: 'Казань',
+	},
+	{
+		name: 'Мурманск',
+	},
+	{
+		name: 'Пермь',
+	},
+	{
+		name: 'Псков',
 	},
 ];
