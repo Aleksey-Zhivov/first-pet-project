@@ -1,0 +1,18 @@
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-left: 0;
+    padding-top: 4px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: black;
+};
+
+.button:hover {
+    color: blue;
+};
+
+.button:active {
+    color: rgb(233, 142, 51);
+};
