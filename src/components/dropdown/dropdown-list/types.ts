@@ -5,5 +5,4 @@ export type OptionType = {
 export type DropdownListProps = {
 	isOpen: boolean;
 	options: OptionType[];
-	selected?: boolean;
 };

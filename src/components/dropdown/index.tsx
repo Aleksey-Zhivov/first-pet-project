@@ -4,6 +4,7 @@ import { Input } from './input';
 import { DropdownList } from './dropdown-list';
 import { Label } from './label';
 import { DeleteButton } from './delete-button';
+import styles from './style.module.scss';
 
 export const Dropdown = () => {
 	const list = document.getElementById('list');
@@ -34,10 +35,29 @@ export const Dropdown = () => {
 		}
 	};
 
+	const handleInputFilter = (text: string) => {
+		setOptions(
+			options.filter((option) =>
+				option.name.toLowerCase().includes(text.toLowerCase())
+			)
+		);
+	};
+
 	const handleChange = (e: SyntheticEvent) => {
 		const input = e.target as HTMLInputElement;
 		setInputValue(input.value);
 	};
+
+	useEffect(() => {
+		document.addEventListener('keyup', (e) => {
+			const input = e.target as HTMLInputElement;
+			handleInputFilter(input.value);
+		});
+		document.removeEventListener('keyup', (e) => {
+			const input = e.target as HTMLInputElement;
+			handleInputFilter(input.value);
+		});
+	}, [Input]);
 
 	useEffect(() => {
 		list?.addEventListener('mouseup', (e) => setInputText(e));
@@ -62,11 +82,15 @@ export const Dropdown = () => {
 		<>
 			<Label title='Выберите город'></Label>
 			<Input value={inputValue} onClick={handleOpen} onChange={handleChange} />
-			<DeleteButton onClick={() => setInputValue('')}></DeleteButton>
-			<DropdownList
-				isOpen={isOpen}
-				options={options}
-				selected={false}></DropdownList>
+			<DeleteButton
+				onClick={() => {
+					setInputValue('');
+				}}></DeleteButton>
+			{options.length !== 0 ? (
+				<DropdownList isOpen={isOpen} options={options}></DropdownList>
+			) : isOpen ? (
+				<span className={`${styles.error}`}>Совпадений не найдено</span>
+			) : null}
 		</>
 	);
 };
