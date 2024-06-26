@@ -1,0 +1,27 @@
+.user {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    height: 20px;
+    color: rgba(0, 0, 0, .5);
+    height: 50px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+};
+
+.user:hover {
+    box-shadow:
+    0 5px 10px gray,
+    -5px -10px 20px rgb(192, 221, 255);
+    border-radius: 10px;
+};
+
+.user_option {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    overflow-y: hidden;
+    padding-left: 15px;
+};

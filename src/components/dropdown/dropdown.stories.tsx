@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dropdown } from './index';
-import React from 'react';
 
 const meta: Meta<typeof Dropdown> = {
 	title: 'Dropdown',
@@ -17,11 +16,9 @@ export default meta;
 type Story = StoryObj<typeof Dropdown>;
 
 export const StartCounterStory: Story = {
-	render: () => {
-		return (
+	render: () => (
 			<>
 				<Dropdown />
 			</>
-		);
-	},
+		),
 };

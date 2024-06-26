@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import styles from './style.module.scss';
+import styles from './style.module.css';
 import { InputProps } from './types';
 
-export const Input: FC<InputProps> = ({ onClick, value, onChange }) => {
-	return (
+export const Input: FC<InputProps> = ({ onClick, value, onChange }) => (
 		<input
 			type='text'
 			className={`${styles.input}`}
@@ -13,4 +12,3 @@ export const Input: FC<InputProps> = ({ onClick, value, onChange }) => {
 			onChange={onChange}
 		/>
 	);
-};

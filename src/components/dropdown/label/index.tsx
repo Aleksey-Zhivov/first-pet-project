@@ -1,7 +1,5 @@
 import { FC } from 'react';
-import styles from './style.module.scss';
+import styles from './style.module.css';
 import { LabelProps } from './types';
 
-export const Label: FC<LabelProps> = ({ title }) => {
-	return <label className={`${styles.title}`}>{title}</label>;
-};
+export const Label: FC<LabelProps> = ({ title }) => <label className={`${styles.title}`}>{title}</label>;

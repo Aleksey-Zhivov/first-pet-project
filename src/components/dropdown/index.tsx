@@ -1,10 +1,10 @@
 import { MouseEvent, SyntheticEvent, useEffect, useState } from 'react';
-import { cities } from 'src/someData/cities';
+import { cities } from '../../someData/cities';
 import { Input } from './input';
 import { DropdownList } from './dropdown-list';
 import { Label } from './label';
 import { DeleteButton } from './delete-button';
-import styles from './style.module.scss';
+import styles from './style.module.css';
 
 export const Dropdown = () => {
 	const list = document.getElementById('list');
@@ -23,7 +23,7 @@ export const Dropdown = () => {
 		}
 	};
 
-	const handleOpenByOputsideClick = (e: MouseEvent) => {
+	const handleOpenByOputsideClick = (e: any) => {
 		if (isOpen && e.target !== list) {
 			setOpen(!isOpen);
 		}
@@ -60,8 +60,8 @@ export const Dropdown = () => {
 	}, [Input]);
 
 	useEffect(() => {
-		list?.addEventListener('mouseup', (e) => setInputText(e));
-		return list?.removeEventListener('mouseup', (e): void => setInputText(e));
+		list?.addEventListener('mouseup', (e: any) => setInputText(e));
+		return list?.removeEventListener('mouseup', (e: any) => setInputText(e));
 	}, [list]);
 
 	useEffect(() => {
@@ -80,14 +80,15 @@ export const Dropdown = () => {
 
 	return (
 		<>
-			<Label title='Выберите город'></Label>
+			<Label title='Выберите город' />
 			<Input value={inputValue} onClick={handleOpen} onChange={handleChange} />
 			<DeleteButton
 				onClick={() => {
 					setInputValue('');
-				}}></DeleteButton>
+				}}
+			/>
 			{options.length !== 0 ? (
-				<DropdownList isOpen={isOpen} options={options}></DropdownList>
+				<DropdownList isOpen={isOpen} options={options} />
 			) : isOpen ? (
 				<span className={`${styles.error}`}>Совпадений не найдено</span>
 			) : null}

@@ -1,0 +1,25 @@
+.header {
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    min-width: 1280PX;
+};
+
+.menu {
+    display: flex;
+    align-items: center;
+    max-width: 1240px;
+    height: 56px;
+    margin: 0 auto;
+};
+
+.link {
+    display: flex;
+    color: #504b4b;
+    text-transform: uppercase;
+    text-decoration: none;
+};
+
+.link_active {
+    color: #824646;
+};
