@@ -1,17 +1,5 @@
-# Dependency directories
-node_modules/
+node_modules
+.env
 .idea
 .vscode
-
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# dotenv environment variables file
-.env
-.env.test
-
-build
 dist
-.yarn

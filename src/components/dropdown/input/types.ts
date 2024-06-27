@@ -1,7 +1,7 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent } from "react";
 
 export type InputProps = {
-	onClick: () => void;
-	onChange: (e: SyntheticEvent) => void;
-	value: string;
+  onClick: () => void;
+  onChange: (e: SyntheticEvent) => void;
+  value: string;
 };

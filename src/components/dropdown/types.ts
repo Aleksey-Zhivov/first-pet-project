@@ -1,5 +1,5 @@
-import { OptionType } from './dropdown-list/types';
+import { OptionType } from "./dropdown-list/types";
 
 export type DropdownProps = {
-	array?: OptionType[];
+  array?: OptionType[];
 };

@@ -1,8 +1,8 @@
 export type OptionType = {
-	name: string;
+  name: string;
 };
 
 export type DropdownListProps = {
-	isOpen: boolean;
-	options: OptionType[];
+  isOpen: boolean;
+  options: OptionType[];
 };

@@ -1,25 +1,26 @@
 .header {
-    background-color: #fff;
-    position: relative;
-    width: 100%;
-    min-width: 1280PX;
-};
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  min-width: 1280px;
+}
 
 .menu {
-    display: flex;
-    align-items: center;
-    max-width: 1240px;
-    height: 56px;
-    margin: 0 auto;
-};
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1240px;
+  height: 56px;
+  margin: 0 auto;
+}
 
 .link {
-    display: flex;
-    color: #504b4b;
-    text-transform: uppercase;
-    text-decoration: none;
-};
+  display: flex;
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
+}
 
 .link_active {
-    color: #824646;
-};
+  color: #bb3a3a;
+}

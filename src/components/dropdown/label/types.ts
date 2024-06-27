@@ -1,3 +1,3 @@
 export type LabelProps = {
-	title: string;
+  title: string;
 };

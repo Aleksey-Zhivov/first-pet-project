@@ -1,13 +1,13 @@
 // import { create } from 'zustand';
 // import { TUser } from './types';
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { usersReducer } from './slices/usersSlice';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { usersReducer } from "./slices/usersSlice";
 import {
-	TypedUseSelectorHook,
-	useDispatch as dispatchHook,
-	useSelector as selectorHook
-  } from 'react-redux';
+  TypedUseSelectorHook,
+  useDispatch as dispatchHook,
+  useSelector as selectorHook,
+} from "react-redux";
 
 // const usersStore = create<TUser>((set) => ({
 // 	id: null,
@@ -44,11 +44,11 @@ import {
 // export default usersStore;
 
 export const rootReducer = combineReducers({
-	users: usersReducer,
-})
+  users: usersReducer,
+});
 
 export const store = configureStore({
-	reducer: rootReducer,
+  reducer: rootReducer,
 });
 
 type RootState = ReturnType<typeof rootReducer>;

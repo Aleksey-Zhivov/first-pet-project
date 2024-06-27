@@ -1,3 +1,3 @@
 export type DeleteButtonProps = {
-	onClick: () => void;
+  onClick: () => void;
 };
