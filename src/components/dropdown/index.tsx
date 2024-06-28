@@ -4,7 +4,7 @@ import { Input } from "./input";
 import { DropdownList } from "./dropdown-list";
 import { Label } from "./label";
 import { DeleteButton } from "./delete-button";
-import styles from "./style.module.css";
+import styles from "./dropdown.module.css";
 
 export const Dropdown = () => {
   const list = document.getElementById("list");
@@ -45,19 +45,15 @@ export const Dropdown = () => {
 
   const handleChange = (e: SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
+    input
+      ? document.addEventListener("keyup", () => {
+          handleInputFilter(input.value);
+        })
+      : document.removeEventListener("keyup", () => {
+          handleInputFilter(input);
+        });
     setInputValue(input.value);
   };
-
-  useEffect(() => {
-    document.addEventListener("keyup", (e) => {
-      const input = e.target as HTMLInputElement;
-      handleInputFilter(input.value);
-    });
-    document.removeEventListener("keyup", (e) => {
-      const input = e.target as HTMLInputElement;
-      handleInputFilter(input.value);
-    });
-  }, [Input]);
 
   useEffect(() => {
     list?.addEventListener("mouseup", (e: any) => setInputText(e));
@@ -65,33 +61,39 @@ export const Dropdown = () => {
   }, [list]);
 
   useEffect(() => {
-    document.addEventListener("mouseup", (e) => handleOpenByOputsideClick(e));
-    return document.removeEventListener("mouseup", (e) =>
-      handleOpenByOputsideClick(e),
-    );
+    isOpen
+      ? document.addEventListener("mouseup", (e) =>
+          handleOpenByOputsideClick(e),
+        )
+      : document.removeEventListener("mouseup", (e) =>
+          handleOpenByOputsideClick(e),
+        );
   }, [isOpen]);
 
   useEffect(() => {
-    document.addEventListener("keydown", (e) => handleOpenByEscapePress(e));
-    return document.removeEventListener("keydown", (e) =>
-      handleOpenByEscapePress(e),
-    );
+    isOpen
+      ? document.addEventListener("keydown", (e) => handleOpenByEscapePress(e))
+      : document.removeEventListener("keydown", (e) =>
+          handleOpenByEscapePress(e),
+        );
   }, [isOpen]);
 
   return (
     <>
-      <div>
+      <div className={`${styles.dropdown}`}>
         <Label title="Выберите город" />
-        <Input
-          value={inputValue}
-          onClick={handleOpen}
-          onChange={handleChange}
-        />
-        <DeleteButton
-          onClick={() => {
-            setInputValue("");
-          }}
-        />
+        <div className={`${styles.input}`}>
+          <Input
+            value={inputValue}
+            onClick={handleOpen}
+            onChange={handleChange}
+          />
+          <DeleteButton
+            onClick={() => {
+              setInputValue("");
+            }}
+          />
+        </div>
         {options.length !== 0 ? (
           <DropdownList isOpen={isOpen} options={options} />
         ) : isOpen ? (

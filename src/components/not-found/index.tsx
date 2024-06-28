@@ -9,7 +9,8 @@ export const NotFound404: FC = () => {
     <>
       <div className={`${styles.not_found}`}>
         <h3 className={`${styles.not_found_text}`}>
-          Страница не найдена. Ошибка 404.
+          Страница не найдена. Ошибка{" "}
+          <span className={`${styles.error_code}`}>404</span>.
         </h3>
         <button
           className={`${styles.to_main_button}`}

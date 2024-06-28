@@ -1,0 +1,33 @@
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  justify-content: flex-start;
+  margin: 10vh auto;
+  position: relative;
+  color: #000;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.error {
+  display: flex;
+  position: absolute;
+  top: 60px;
+  list-style: none;
+  overflow: scroll;
+  overflow-y: auto;
+  border: 1px solid #000;
+  border-radius: 5px;
+  flex-direction: column;
+  row-gap: 5px;
+  min-width: 150px;
+  max-height: 200px;
+  padding: 5px 10px;
+  margin-top: 5px;
+}

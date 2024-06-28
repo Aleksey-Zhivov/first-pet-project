@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   min-width: 1280px;
+  border-bottom: 3px solid #cfbfc2;
 }
 
 .menu {
@@ -22,5 +23,5 @@
 }
 
 .link_active {
-  color: #bb3a3a;
+  color: #ff0032;
 }

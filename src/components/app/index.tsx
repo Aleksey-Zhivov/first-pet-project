@@ -5,10 +5,10 @@ import { useDispatch } from "../../utils/store";
 import styles from "./app.module.css";
 import { Header } from "../header";
 import { Users } from "../users";
-import clsx from "clsx";
 import { Dropdown } from "../dropdown";
 import { NotFound404 } from "../not-found";
 import { MainPage } from "../main-page";
+import { Profile } from "../profile/index";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<Profile />} />
         <Route path="/dropdown" element={<Dropdown />} />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
@@ -31,7 +32,7 @@ const AppRouter = () => {
 
 export const App = () => (
   <BrowserRouter>
-    <div className={clsx(styles.app)}>
+    <div className={`${styles.app}`}>
       <Header />
       <AppRouter />
     </div>

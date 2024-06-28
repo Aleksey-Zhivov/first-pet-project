@@ -20,6 +20,7 @@ export const Users: FC = () => {
           users.map((user) => (
             <User
               user={{
+                id: user.id,
                 firstname: user.firstname,
                 lastname: user.lastname,
                 address: user.address.city,
@@ -27,7 +28,7 @@ export const Users: FC = () => {
                 phone: user.phone,
                 companyName: user.company.name,
               }}
-              key={user._id}
+              key={user.id}
             />
           ))}
       </div>

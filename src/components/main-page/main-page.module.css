@@ -1,0 +1,5 @@
+.main_page {
+  text-transform: uppercase;
+  margin: 10vh auto;
+  font-size: clamp(1rem, 0.5965rem + 1.7544vw, 2rem);
+}

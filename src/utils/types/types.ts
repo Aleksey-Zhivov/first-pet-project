@@ -1,5 +1,5 @@
 export type TUser = {
-  _id: number | null;
+  id: number;
   firstname: string;
   lastname: string;
   email: string;

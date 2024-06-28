@@ -1,0 +1,23 @@
+.not_found {
+  display: flex;
+  margin: 10vh auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.error_code {
+  color: #ff0032;
+}
+
+.to_main_button {
+  background-color: #ff0032;
+  color: white;
+  text-wrap: nowrap;
+  outline: none;
+  width: min-content;
+  height: 44px;
+  border-radius: 8px;
+  border-color: transparent;
+}

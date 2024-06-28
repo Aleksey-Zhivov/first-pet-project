@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./style.module.css";
+import styles from "./input.module.css";
 import { InputProps } from "./types";
 
 export const Input: FC<InputProps> = ({ onClick, value, onChange }) => (
