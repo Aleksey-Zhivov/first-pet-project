@@ -18,6 +18,13 @@ export const User: FC<TUserProps> = ({ user }) => {
         <div className={`${styles.user_option}`}>{user.email}</div>
         <div className={`${styles.user_option}`}>{user.phone}</div>
         <div className={`${styles.user_option}`}>{user.companyName}</div>
+        <div className={`${styles.user_option}`}>
+          {user.weather?.temperature}
+        </div>
+        <div className={`${styles.user_option}`}>
+          {user.weather?.description}
+        </div>
+        <div className={`${styles.user_option}`}>{user.weather?.wind}</div>
       </div>
     </>
   );

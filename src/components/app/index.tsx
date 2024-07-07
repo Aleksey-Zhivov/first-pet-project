@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { fetchUsers } from "../../utils/slices/usersSlice";
 import { useEffect } from "react";
-import { useDispatch } from "../../utils/store";
+import { useDispatch, useSelector } from "../../utils/store";
 import styles from "./app.module.css";
 import { Header } from "../header";
 import { Users } from "../users";
@@ -9,9 +9,11 @@ import { Dropdown } from "../dropdown";
 import { NotFound404 } from "../not-found";
 import { MainPage } from "../main-page";
 import { Profile } from "../profile/index";
+import { fetchWeather } from "../../utils/slices/weatherSlice";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
+  const users = useSelector((store) => store.users.data);
 
   useEffect(() => {
     dispatch(fetchUsers());

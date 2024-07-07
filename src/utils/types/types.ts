@@ -32,3 +32,9 @@ export type TUser = {
 export type TUsersResponse = {
   data: TUser[];
 };
+
+export type TWeather = {
+  temperature: string;
+  wind: string;
+  description: string;
+};

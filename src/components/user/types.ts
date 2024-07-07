@@ -1,3 +1,5 @@
+import { TWeather } from "src/utils/types/types";
+
 export type TUserProps = {
   user: {
     id: number;
@@ -7,5 +9,6 @@ export type TUserProps = {
     email: string;
     phone: string;
     companyName: string;
+    weather?: TWeather;
   };
 };

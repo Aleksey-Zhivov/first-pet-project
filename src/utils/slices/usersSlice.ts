@@ -1,16 +1,18 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { getUsersApi } from "../api";
-import { TUser } from "../types/types";
+import { TUser, TUsersResponse } from "../types/types";
 
 interface IUsersSliceState {
   data: TUser[];
+  newCity: string | undefined;
   isUserLoading: boolean;
   error: string | undefined;
 }
 
 const initialState: IUsersSliceState = {
   data: [],
+  newCity: undefined,
   isUserLoading: false,
   error: undefined,
 };
@@ -25,11 +27,13 @@ const usersSlice = createSlice({
   reducers: {
     getUsers: (state) => {
       state.isUserLoading = false;
-      console.log(state);
     },
   },
   selectors: {
     selectUser: (state) => {
+      state.data;
+    },
+    changeCity: (state) => {
       state.data;
     },
   },

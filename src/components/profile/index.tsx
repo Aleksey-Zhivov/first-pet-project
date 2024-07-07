@@ -3,6 +3,7 @@ import styles from "./profile.module.css";
 import { useSelector } from "../../utils/store";
 import { useParams } from "react-router-dom";
 import { Preloader } from "../../components/preloader";
+import { cities } from "src/someData/cities";
 
 export const Profile: FC = () => {
   const users = useSelector((store) => store.users);
@@ -11,7 +12,9 @@ export const Profile: FC = () => {
   const userData = users.data.find((user) => user.id === Number(id));
   const userName = `${userData?.firstname} ${userData?.lastname}`;
   const userAddress = `${userData?.address.zipcode}, ${userData?.address.suite}, ${userData?.address.city}, ${userData?.address.street}`;
-  const userCoord = `Координаты: ${userData?.address.geo.lat}, ${userData?.address.geo.lng}`;
+  // if (userData) {
+  //   userData.address.city = "Краснодар";
+  // }
 
   if (!userData) {
     return <Preloader />;

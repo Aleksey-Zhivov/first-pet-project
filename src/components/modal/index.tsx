@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 
 export const Modal: FC<ModalProps> = ({
   title,
-//   children,
+  //   children,
   onClose,
   onClick,
 }) => {

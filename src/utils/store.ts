@@ -8,6 +8,7 @@ import {
   useDispatch as dispatchHook,
   useSelector as selectorHook,
 } from "react-redux";
+import { weatherReducer } from "./slices/weatherSlice";
 
 // const usersStore = create<TUser>((set) => ({
 // 	id: null,
@@ -45,6 +46,7 @@ import {
 
 export const rootReducer = combineReducers({
   users: usersReducer,
+  weather: weatherReducer,
 });
 
 export const store = configureStore({
