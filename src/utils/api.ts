@@ -20,6 +20,7 @@ export const getWeatherApi = (city: string) =>
   fetch(`${WEATHER_URL}/${city}`)
     .then((res) => checkResponse<TWeather>(res))
     .then((data) => {
+      console.log(data);
       if (data) {
         return data;
       }

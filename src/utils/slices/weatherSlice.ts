@@ -1,15 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { TWeather } from "../types/types";
-import { getWeatherApi } from "@api";
+import { getUsersApi, getWeatherApi } from "@api";
 
 interface IWeatherState {
-  data: TWeather | undefined;
+  data: TWeather;
   isLoading: boolean;
   error: string | undefined;
 }
 
 const initialState: IWeatherState = {
-  data: undefined,
+  data: {
+    description: "",
+    temperature: "",
+    wind: "",
+  },
   isLoading: false,
   error: undefined,
 };
@@ -27,11 +31,7 @@ const weatherSlice = createSlice({
       state.isLoading = false;
     },
   },
-  selectors: {
-    selectWeather: (state) => {
-      state.data;
-    },
-  },
+  selectors: {},
   extraReducers(builder) {
     builder
       .addCase(fetchWeather.pending, (state) => {

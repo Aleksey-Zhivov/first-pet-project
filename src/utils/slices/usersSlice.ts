@@ -1,21 +1,22 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { getUsersApi } from "../api";
-import { TUser, TUsersResponse } from "../types/types";
+import { TUser } from "../types/types";
+import { cities } from "../../someData/cities";
 
 interface IUsersSliceState {
   data: TUser[];
-  newCity: string | undefined;
   isUserLoading: boolean;
   error: string | undefined;
 }
 
 const initialState: IUsersSliceState = {
   data: [],
-  newCity: undefined,
   isUserLoading: false,
   error: undefined,
 };
+
+const randomIndex = Math.floor(Math.random() * cities.length);
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () =>
   getUsersApi(),
@@ -33,9 +34,6 @@ const usersSlice = createSlice({
     selectUser: (state) => {
       state.data;
     },
-    changeCity: (state) => {
-      state.data;
-    },
   },
   extraReducers(builder) {
     builder
@@ -49,6 +47,11 @@ const usersSlice = createSlice({
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.isUserLoading = false;
         state.data = action.payload;
+        state.data.map((user, index) =>
+          user.id === action.payload[index].id
+            ? (user.address.city = cities[randomIndex].name)
+            : (user.address.city = "-"),
+        );
       });
   },
 });

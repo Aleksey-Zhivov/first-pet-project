@@ -1,9 +1,10 @@
 .user {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 10px;
   color: rgba(0, 0, 0, 0.5);
   height: 50px;
+  gap: 0 20px;
+  align-content: center;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;

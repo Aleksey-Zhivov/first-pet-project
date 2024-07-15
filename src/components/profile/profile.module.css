@@ -1,3 +1,35 @@
 .profile {
   display: flex;
+  flex-direction: row;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.user_data {
+
+}
+
+.weather{
+  display: flex;
+  position: relative;
+  height: 275px;
+  width: 400px;
+  background: radial-gradient(ellipse at center,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Old browsers */
+  border-radius: 10px;
+  top:calc(50% - 125px);
+  left: calc(50% - 200px);
+  border: 3px solid #FFFFFF;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.profile__list {
+  list-style: none;
+}
+
+.weather_text {
+  color: white;
+  list-style: none;
 }

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import style from "./style.module.css";
+import styles from "./style.module.css";
 import { TPagintaion } from "./types";
 
 type TVisiblePages = {
@@ -30,21 +30,58 @@ const Pagination: FC<TPagintaion> = ({ pages, paginate }) => {
     }));
   };
 
+  const decreaseCurrent = () => {
+    setVisiblePages((prevState) => {
+      const newCurrent = prevState.current - 1;
+      paginate(newCurrent);
+      return {
+        ...prevState,
+        current: newCurrent,
+      };
+    });
+  };
+
+  const encreaseCurrent = () => {
+    setVisiblePages((prevState) => {
+      const newCurrent = prevState.current + 1;
+      paginate(newCurrent);
+      return {
+        ...prevState,
+        current: newCurrent,
+      };
+    });
+  };
+
+  const moveLeft = () => {
+    visiblePages.leftPointer === 0;
+    decreaseCurrent();
+  };
+
+  const moveRight = () => {
+    encreaseCurrent();
+  };
+
   return (
-    <div className={style.container}>
-      <ul className={style.list}>
+    <div className={styles.container}>
+      <button
+        className={
+          visiblePages.current === 0 ? styles.button_disabled : styles.button
+        }
+        onClick={moveLeft}
+        disabled={visiblePages.current === 0}
+      >
+        назад
+      </button>
+      <ul className={styles.list}>
         {visiblePages.visibleArr.map((item, index) => (
           <li
             key={index}
-            className={`${style.list__item} ${
-              index === visiblePages.current ? style.list__item_active : null
+            className={`${styles.list__item} ${
+              index === visiblePages.current ? styles.list__item_active : null
             }`}
             onClick={() => paginate(index)}
           >
             <a
-              className={`${style.link} ${
-                index === visiblePages.current ? style.link_active : null
-              }`}
               onClick={() => {
                 changePage(index);
               }}
@@ -54,6 +91,17 @@ const Pagination: FC<TPagintaion> = ({ pages, paginate }) => {
           </li>
         ))}
       </ul>
+      <button
+        className={
+          visiblePages.current === visiblePages.visibleArr.length - 1
+            ? styles.button_disabled
+            : styles.button
+        }
+        onClick={moveRight}
+        disabled={visiblePages.current === visiblePages.visibleArr.length - 1}
+      >
+        вперед
+      </button>
     </div>
   );
 };

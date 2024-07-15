@@ -1,14 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useDebugValue, useEffect, useState } from "react";
 import { User } from "../user";
-import { useSelector } from "../../utils/store";
+import { useDispatch, useSelector } from "../../utils/store";
 import { Preloader } from "../preloader";
 import styles from "./users.module.css";
 import clsx from "clsx";
 import Pagination from "../pagination/index";
+import { cities } from "../../someData/cities";
+import { fetchWeather } from "../../utils/slices/weatherSlice";
 
 export const Users: FC = () => {
   const users = useSelector((store) => store.users.data);
-  const weather = useSelector((store) => store.weather);
   const [currentPage, setCurrentPage] = useState(0);
   const [amountOnPage] = useState(10);
   const pages = users.length / amountOnPage;
@@ -29,7 +30,7 @@ export const Users: FC = () => {
     <section className={clsx(styles.users_section)}>
       <div className={clsx(styles.users_header)}>Пользователи</div>
       <div>
-        {slicedUsers.map((user) => (
+        {slicedUsers.map((user, index) => (
           <User
             user={{
               id: user.id,
@@ -39,9 +40,8 @@ export const Users: FC = () => {
               email: user.email,
               phone: user.phone,
               companyName: user.company.name,
-              weather: weather.data,
             }}
-            key={user.id}
+            key={index}
           />
         ))}
         <Pagination pages={pages} paginate={paginate} />
