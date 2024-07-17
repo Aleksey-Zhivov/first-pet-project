@@ -7,7 +7,6 @@ import { useSelector } from "../../utils/store";
 export const User: FC<TUserProps> = ({ user }) => {
   const name = user.firstname + " " + user.lastname;
   const navigate = useNavigate();
-  const weather = useSelector((store) => store.weather.data);
 
   return (
     <>

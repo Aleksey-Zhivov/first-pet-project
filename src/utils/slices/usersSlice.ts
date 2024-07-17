@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { getUsersApi } from "../api";
 import { TUser } from "../types/types";
@@ -44,15 +44,18 @@ const usersSlice = createSlice({
         state.isUserLoading = false;
         state.error = action.error.message;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.isUserLoading = false;
-        state.data = action.payload;
-        state.data.map((user, index) =>
-          user.id === action.payload[index].id
-            ? (user.address.city = cities[randomIndex].name)
-            : (user.address.city = "-"),
-        );
-      });
+      .addCase(
+        fetchUsers.fulfilled,
+        (state, action: PayloadAction<TUser[]>) => {
+          state.isUserLoading = false;
+          action.payload.map((user, index) =>
+            action.payload[index].address.city === "Anytown"
+              ? (user.address.city = cities[randomIndex].name)
+              : (user.address.city = "-"),
+          );
+          state.data = action.payload;
+        },
+      );
   },
 });
 

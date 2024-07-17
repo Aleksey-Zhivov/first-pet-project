@@ -1,32 +1,49 @@
 .profile {
   display: flex;
   flex-direction: row;
+  width: min-content;
+}
+
+.profile__list_title {
+  font-weight: 800;
 }
 
 .title {
   text-transform: uppercase;
 }
 
-.user_data {
-
+.list_item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.weather{
+.list_item_text {
+  display: block;
+  width: 15vw;
+}
+
+.weather {
   display: flex;
   position: relative;
-  height: 275px;
-  width: 400px;
-  background: radial-gradient(ellipse at center,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Old browsers */
+  height: 175px;
+  width: 250px;
+  background: radial-gradient(
+    ellipse at center,
+    #7abcff 0%,
+    #60abf8 44%,
+    #4096ee 100%
+  );
   border-radius: 10px;
-  top:calc(50% - 125px);
-  left: calc(50% - 200px);
-  border: 3px solid #FFFFFF;
-  padding: 10px 20px;
+  top: calc(50% - 60px);
+  left: calc(50% - 100px);
   align-items: center;
 }
 
 .profile__list {
   list-style: none;
+  padding: 10px 20px;
 }
 
 .weather_text {

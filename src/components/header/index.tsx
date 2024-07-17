@@ -1,11 +1,13 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./header.module.css";
 import { Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
+import { useSelector } from "../../utils/store";
 
 export const Header: FC = () => {
   const location = useLocation();
   const currentLocation = location.pathname;
+  const users = useSelector((store) => store.users.data);
 
   return (
     <header className={styles.header}>
@@ -49,6 +51,7 @@ export const Header: FC = () => {
               styles.link,
               currentLocation !== "/" &&
                 currentLocation !== "/users" &&
+                users.find((user) => currentLocation !== `/users/${user.id}`) &&
                 currentLocation !== "/dropdown"
                 ? [styles.link_active, styles.link]
                 : styles.link,

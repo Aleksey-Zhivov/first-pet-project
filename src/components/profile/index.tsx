@@ -36,18 +36,6 @@ export const Profile: FC = () => {
           <div className={`${styles.user_data}`}>
             <ul className={`${styles.profile__list}`}>
               <li className={`${styles.list_item}`}>
-                <p className={`${styles.list_item_text}`}>Имя</p>
-                <p className={`${styles.list_item_text}`}>
-                  {userData.firstname}
-                </p>
-              </li>
-              <li className={`${styles.list_item}`}>
-                <p className={`${styles.list_item_text}`}>Фамилия</p>
-                <p className={`${styles.list_item_text}`}>
-                  {userData.lastname}
-                </p>
-              </li>
-              <li className={`${styles.list_item}`}>
                 <p className={`${styles.list_item_text}`}>Дата рождения</p>
                 <p className={`${styles.list_item_text}`}>
                   {userData.birthDate}
@@ -77,7 +65,9 @@ export const Profile: FC = () => {
               </li>
             </ul>
             <ul className={`${styles.profile__list}`}>
-              Авторизационные данные
+              <span className={`${styles.profile__list_title}`}>
+                Авторизационные данные
+              </span>
               <li className={`${styles.list_item}`}>
                 <p className={`${styles.list_item_text}`}>Логин</p>
                 <p className={`${styles.list_item_text}`}>
