@@ -1,4 +1,4 @@
-import { SyntheticEvent } from "react";
+import { LegacyRef, SyntheticEvent } from "react";
 
 export type InputProps = {
   onClick: () => void;

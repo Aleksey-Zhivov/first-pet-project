@@ -1,27 +1,25 @@
-import { MouseEvent, SyntheticEvent, useEffect, useState } from "react";
+import { MouseEvent, SyntheticEvent, useEffect, useRef, useState } from "react";
 import { cities } from "../../someData/cities";
 import { Input } from "./input";
 import { DropdownList } from "./dropdown-list";
 import { Label } from "./label";
 import { DeleteButton } from "./delete-button";
 import styles from "./dropdown.module.css";
+import { useClose } from "../../utils/hooks/useClose";
 
 export const Dropdown = () => {
-  const list = document.getElementById("list");
+  const list = document.getElementById("list"); //id - уникальное значение
+
+  /* Начальные состояния */
+  const initialInputValue = "";
 
   const [isOpen, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(initialInputValue);
   const [options, setOptions] = useState(cities);
 
+  /* Закрытие / открытие листа */
+
   const handleOpen = () => setOpen(!isOpen);
-  const setInputText = (e: MouseEvent) => {
-    const item = e.target as HTMLLIElement;
-    if (item !== e.currentTarget && item) {
-      setInputValue(item.outerText);
-    } else if (e.target !== list) {
-      setOpen(false);
-    }
-  };
 
   const handleOpenByOputsideClick = (e: any) => {
     if (isOpen && e.target !== list) {
@@ -32,6 +30,35 @@ export const Dropdown = () => {
   const handleOpenByEscapePress = (e: KeyboardEvent) => {
     if (isOpen && e.key === "Escape") {
       setOpen(!isOpen);
+    }
+  };
+
+  useEffect(() => {
+    isOpen
+      ? document.addEventListener("mouseup", (e) =>
+          handleOpenByOputsideClick(e),
+        )
+      : document.removeEventListener("mouseup", (e) =>
+          handleOpenByOputsideClick(e),
+        );
+  }, [isOpen]);
+
+  useEffect(() => {
+    isOpen
+      ? document.addEventListener("keydown", (e) => handleOpenByEscapePress(e))
+      : document.removeEventListener("keydown", (e) =>
+          handleOpenByEscapePress(e),
+        );
+  }, [isOpen]);
+
+  /* Установка значения из списка */
+
+  const setInputText = (e: MouseEvent) => {
+    const item = e.target as HTMLLIElement;
+    if (item !== e.currentTarget && item) {
+      setInputValue(item.outerText);
+    } else if (e.target !== list) {
+      setOpen(false);
     }
   };
 
@@ -55,28 +82,15 @@ export const Dropdown = () => {
     setInputValue(input.value);
   };
 
+  const clearInput = () => {
+    setInputValue(initialInputValue);
+    setOptions(cities);
+  };
+
   useEffect(() => {
     list?.addEventListener("mouseup", (e: any) => setInputText(e));
     return list?.removeEventListener("mouseup", (e: any) => setInputText(e));
   }, [list]);
-
-  useEffect(() => {
-    isOpen
-      ? document.addEventListener("mouseup", (e) =>
-          handleOpenByOputsideClick(e),
-        )
-      : document.removeEventListener("mouseup", (e) =>
-          handleOpenByOputsideClick(e),
-        );
-  }, [isOpen]);
-
-  useEffect(() => {
-    isOpen
-      ? document.addEventListener("keydown", (e) => handleOpenByEscapePress(e))
-      : document.removeEventListener("keydown", (e) =>
-          handleOpenByEscapePress(e),
-        );
-  }, [isOpen]);
 
   return (
     <>
@@ -88,11 +102,7 @@ export const Dropdown = () => {
             onClick={handleOpen}
             onChange={handleChange}
           />
-          <DeleteButton
-            onClick={() => {
-              setInputValue("");
-            }}
-          />
+          <DeleteButton onClick={clearInput} />
         </div>
         {options.length !== 0 ? (
           <DropdownList isOpen={isOpen} options={options} />
