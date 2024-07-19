@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type TModalProps = {
+export type TModalUIProps = {
   title: string;
   onClose: () => void;
   children?: ReactNode;

@@ -46,7 +46,7 @@ export const Header: FC = () => {
           >
             Выпадающий список
           </Link>
-          <Link
+          {/* <Link
             className={clsx(
               styles.link,
               currentLocation !== "/" &&
@@ -59,7 +59,7 @@ export const Header: FC = () => {
             to={"/some-link"}
           >
             ???
-          </Link>
+          </Link> */}
         </>
       </nav>
     </header>

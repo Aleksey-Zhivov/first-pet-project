@@ -37,7 +37,7 @@
   );
   border-radius: 10px;
   top: calc(50% - 60px);
-  left: calc(50% - 100px);
+  left: calc(10% - 100px);
   align-items: center;
 }
 
